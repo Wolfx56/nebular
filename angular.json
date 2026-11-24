@@ -184,7 +184,8 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": {
-              "base": "dist/docs"
+              "base": "dist/docs",
+              "browser": ""
             },
             "index": "docs/index.html",
             "polyfills": ["docs/polyfills.ts"],
@@ -211,7 +212,7 @@
                 "bundleName": "algolia",
                 "input": "node_modules/docsearch.js/dist/cdn/docsearch.min.css"
               },
-              "node_modules/highlight.js/styles/dracula.css",
+              "node_modules/highlight.js/styles/base16/dracula.css",
               "docs/app/@theme/styles/styles.scss"
             ],
             "scripts": [
@@ -305,7 +306,7 @@
               "docs/google46533d2e7a851062.html"
             ],
             "styles": [
-              "node_modules/highlight.js/styles/dracula.css",
+              "node_modules/highlight.js/styles/base16/dracula.css",
               "docs/app/@theme/styles/styles.scss"
             ],
             "scripts": []
