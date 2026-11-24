@@ -1275,8 +1275,8 @@ describe('NbSelect - dynamic options', () => {
       <nb-layout-column>
         <nb-select-with-autocomplete
           [(ngModel)]="selectedValue"
-          [withOptionSearch]="true"
-          (optionSearchChange)="filterValue = $event"
+          [withOptionsAutocomplete]="true"
+          (optionsAutocompleteInputChange)="filterValue = $event"
           (selectOpen)="isOpened = true"
           (selectClose)="isOpened = false"
         >
