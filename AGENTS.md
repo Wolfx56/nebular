@@ -38,14 +38,21 @@ Running a single spec: the reliable way is a temporary `fdescribe`/`fit` (remove
 
 Pre-commit (husky + `.lintstagedrc.json`) runs eslint, stylelint and `prettier --check` on staged files.
 
-Known pre-existing breakage (identical on the Angular 21 baseline, so it is not a regression):
+Testing notes:
 
-- `ng test theme`: 162 of 816 specs fail, almost all with `NG0100 ExpressionChangedAfterItHasBeenChecked` in scroll, layout and overlay test hosts. Compare failing spec names against `master` rather than expecting a green run.
-- `npm run test:schematics`: `ng-add/index.spec.ts` uses `runSchematicAsync`/`runExternalSchematicAsync`, which were removed from `SchematicTestRunner`. The `ng-add` schematic itself assumes an NgModule-based app (`app.module.ts`), which is not what `ng new` generates any more.
-- `npm run e2e`: Protractor is end-of-life.
-- Karma needs a Chromium binary: set `CHROME_BIN` if Chrome isn't installed (any Chromium-based browser works).
+- Since Angular 21, TestBed is zoneless by default. Every `test.ts` registers `provideZoneChangeDetection()` because the specs rely on zone.js change detection. Without it, about 160 theme specs fail with `NG0100 ExpressionChangedAfterItHasBeenChecked`.
+- Karma needs a Chromium binary: set `CHROME_BIN` if Chrome isn't installed (any Chromium-based browser works). With `CI` set, Karma runs once on local headless Chrome. It only switches to BrowserStack when `BROWSERSTACK_USERNAME` is also set.
+- Still broken: `npm run test:schematics`. `ng-add/index.spec.ts` uses `runSchematicAsync`/`runExternalSchematicAsync`, which were removed from `SchematicTestRunner`, so the step is commented out in CI. The `ng-add` schematic itself assumes an NgModule-based app (`app.module.ts`), which is not what `ng new` generates any more.
+- `npm run e2e` (root, Protractor) is end-of-life and not run in CI.
 
-CI (`.github/workflows/pr-check.yml`) builds packages (also against rxjs 7.4.0 — peer range is `^6.5.3 || ^7.4.0`), the docs, and the playground with `--configuration=production-wp`. Lint/test jobs are commented out there, so run them locally.
+CI (`.github/workflows/pr-check.yml`):
+
+- `build-packages` and `build-docs` build everything;
+- `build-playground` builds the playground with `--configuration=production-wp` against the built `dist/`;
+- `unit-test` runs `ng test playground -c=production-wp`, i.e. all specs against `dist/`;
+- `packages-smoke` installs the built packages into `packages-smoke/`, builds that SSR app and checks the server-rendered HTML. Its `package-lock.json` resolves `@nebular/*` from `file:.lib/*`; to regenerate it, copy `dist/*` into `packages-smoke/.lib/` first. Angular 22 SSR rejects unknown hosts, so `localhost` is allowed in its `angular.json` (`security.allowedHosts`).
+
+The lint job is commented out, so run lint locally.
 
 ## Architecture
 
