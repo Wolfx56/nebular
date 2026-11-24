@@ -4,20 +4,19 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { AfterViewInit, Component, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, TemplateRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { NbPopoverDirective, NbPosition, NbTrigger } from '@nebular/theme';
 
 import { PopoverListComponent, PopoverTabsComponent } from './components/dynamic.components';
 
-
 @Component({
-    selector: 'nb-popover-dynamic',
-    templateUrl: './popover-dynamic.component.html',
-    styleUrls: ['./popover-dynamic.scss'],
-    standalone: false
+  selector: 'nb-popover-dynamic',
+  templateUrl: './popover-dynamic.component.html',
+  styleUrls: ['./popover-dynamic.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PopoverDynamicComponent implements OnDestroy, AfterViewInit {
-
   @ViewChild(NbPopoverDirective) popover: NbPopoverDirective;
   @ViewChild('tabs', { read: TemplateRef }) templateTabs: TemplateRef<any>;
   @ViewChild('list', { read: TemplateRef }) templateList: TemplateRef<any>;
@@ -60,13 +59,7 @@ export class PopoverDynamicComponent implements OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.items = [
-      this.componentList,
-      this.componentTabs,
-      this.templateList,
-      this.templateTabs,
-      this.textContent,
-    ];
+    this.items = [this.componentList, this.componentTabs, this.templateList, this.templateTabs, this.textContent];
   }
 
   ngOnDestroy() {

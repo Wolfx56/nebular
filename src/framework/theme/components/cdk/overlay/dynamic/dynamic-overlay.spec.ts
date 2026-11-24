@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Component, EventEmitter, Input, NgZone } from '@angular/core';
+import { Component, EventEmitter, Input, NgZone, ChangeDetectionStrategy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ScrollStrategy } from '@angular/cdk/overlay';
 import {
@@ -12,8 +12,9 @@ import {
 } from '@nebular/theme';
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbDynamicOverlayMockComponent implements NbRenderableContainer {
   @Input() content: any;
@@ -23,8 +24,9 @@ export class NbDynamicOverlayMockComponent implements NbRenderableContainer {
 }
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbDynamicOverlayMock2Component extends NbDynamicOverlayMockComponent {}
 

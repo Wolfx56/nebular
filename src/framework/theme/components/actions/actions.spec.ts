@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
@@ -19,14 +19,15 @@ import {
 const ICON_NAME = 'chevron-left-outline';
 
 @Component({
-    template: `
+  template: `
     <nb-actions>
       <nb-action [icon]="icon" [link]="link">
         <ng-container *ngIf="projectContent">{{ projectedText }}</ng-container>
       </nb-action>
     </nb-actions>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbActionsTestComponent {
   projectContent: boolean = false;

@@ -1,11 +1,11 @@
-import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, QueryList, ViewChild, ViewChildren, ChangeDetectionStrategy } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NbStepComponent, NbStepperComponent, NbStepperModule, NbThemeModule } from '@nebular/theme';
 
 @Component({
-    selector: 'nb-step-changed-test',
-    template: `
+  selector: 'nb-step-changed-test',
+  template: `
     <nb-stepper [selectedIndex]="1">
       <nb-step [label]="labelOne">
         <ng-template #labelOne>First step</ng-template>
@@ -20,7 +20,8 @@ import { NbStepComponent, NbStepperComponent, NbStepperModule, NbThemeModule } f
       </nb-step>
     </nb-stepper>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbStepChangeTestComponent {
   @ViewChild(NbStepperComponent) stepper: NbStepperComponent;

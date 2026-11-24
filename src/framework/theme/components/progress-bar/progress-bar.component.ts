@@ -4,7 +4,7 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { NbStatusService } from '../../services/status.service';
 import { NbComponentSize } from '../component-size';
@@ -95,9 +95,9 @@ import { NbComponentOrCustomStatus } from '../component-status';
  * progress-bar-control-text-color:
  */
 @Component({
-    selector: 'nb-progress-bar',
-    styleUrls: ['./progress-bar.component.scss'],
-    template: `
+  selector: 'nb-progress-bar',
+  styleUrls: ['./progress-bar.component.scss'],
+  template: `
     <div class="progress-container">
       <div class="progress-value" [style.width.%]="value">
         <span *ngIf="displayValue">{{ value }}%</span>
@@ -105,10 +105,10 @@ import { NbComponentOrCustomStatus } from '../component-status';
       </div>
     </div>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbProgressBarComponent {
-
   /**
    * Progress bar value in percent (0 - 100)
    */
@@ -197,6 +197,5 @@ export class NbProgressBarComponent {
     return [];
   }
 
-  constructor(protected statusService: NbStatusService) {
-  }
+  constructor(protected statusService: NbStatusService) {}
 }

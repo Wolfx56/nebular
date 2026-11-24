@@ -4,7 +4,16 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, Inject, NgZone, OnDestroy, OnInit, ViewChild, AfterContentChecked } from '@angular/core';
+import {
+  Component,
+  Inject,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  AfterContentChecked,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, map, publishReplay, refCount, tap, takeUntil } from 'rxjs/operators';
@@ -14,13 +23,13 @@ import { NgdTabbedBlockComponent } from '../../blocks/components/tabbed-block/ta
 import { NgdStructureService } from '../../@theme/services';
 
 @Component({
-    selector: 'ngd-page',
-    templateUrl: './page.component.html',
-    styleUrls: ['./page.component.scss'],
-    standalone: false
+  selector: 'ngd-page',
+  templateUrl: './page.component.html',
+  styleUrls: ['./page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NgdPageComponent implements OnInit, AfterContentChecked, OnDestroy {
-
   currentItem;
   private destroy$ = new Subject<void>();
 
@@ -28,17 +37,20 @@ export class NgdPageComponent implements OnInit, AfterContentChecked, OnDestroy 
 
   @ViewChild(NgdTabbedBlockComponent) tabbedBlock: NgdTabbedBlockComponent;
 
-  constructor(@Inject(NB_WINDOW) private window,
-              private ngZone: NgZone,
-              private router: Router,
-              private activatedRoute: ActivatedRoute,
-              private structureService: NgdStructureService,
-              private titleService: Title) {
-  }
+  constructor(
+    @Inject(NB_WINDOW) private window,
+    private ngZone: NgZone,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private structureService: NgdStructureService,
+    private titleService: Title,
+  ) {}
 
   get showSettings() {
-    return this.currentItem && this.currentItem.children
-      .some((item) => ['markdown', 'component', 'tabbed'].includes(item.block));
+    return (
+      this.currentItem &&
+      this.currentItem.children.some((item) => ['markdown', 'component', 'tabbed'].includes(item.block))
+    );
   }
 
   ngOnInit() {
@@ -49,7 +61,7 @@ export class NgdPageComponent implements OnInit, AfterContentChecked, OnDestroy 
   ngAfterContentChecked() {
     const currentTabName = this.getCurrentTabName();
     if (this.currentTabName !== currentTabName) {
-      Promise.resolve().then(() => this.currentTabName = currentTabName);
+      Promise.resolve().then(() => (this.currentTabName = currentTabName));
     }
   }
 
@@ -66,7 +78,7 @@ export class NgdPageComponent implements OnInit, AfterContentChecked, OnDestroy 
           const slag = `${params.page}_${params.subPage}`;
           return this.structureService.findPageBySlag(this.structureService.getPreparedStructure(), slag);
         }),
-        filter(item => item),
+        filter((item) => item),
         tap((item: any) => {
           let title = `Nebular - ${item.name}`;
 

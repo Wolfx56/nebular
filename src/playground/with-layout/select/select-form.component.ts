@@ -4,13 +4,14 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-    selector: 'nb-select-form',
-    templateUrl: './select-form.component.html',
-    standalone: false
+  selector: 'nb-select-form',
+  templateUrl: './select-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SelectFormComponent {
   selectedItemNgModel;

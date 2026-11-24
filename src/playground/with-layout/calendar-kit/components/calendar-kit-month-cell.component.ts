@@ -1,4 +1,4 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { TranslationWidth } from '@angular/common';
 import {
   NbCalendarCell,
@@ -8,25 +8,32 @@ import {
 } from '@nebular/theme';
 
 @Component({
-    selector: 'nb-calendar-kit-month-cell',
-    template: `
+  selector: 'nb-calendar-kit-month-cell',
+  template: `
     <h4>{{ title }}</h4>
-    <nb-calendar-day-picker [boundingMonths]="false"
-                            [visibleDate]="date"
-                            [date]="selectedValue"
-                            (dateChange)="select.emit($event)">
+    <nb-calendar-day-picker
+      [boundingMonths]="false"
+      [visibleDate]="date"
+      [date]="selectedValue"
+      (dateChange)="select.emit($event)"
+    >
     </nb-calendar-day-picker>
   `,
-    styles: [`
-    :host {
-      flex: 1 0 auto;
-      padding: 1rem;
-    }
-  `],
-    standalone: false
+  styles: [
+    `
+      :host {
+        flex: 1 0 auto;
+        padding: 1rem;
+      }
+    `,
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
-export class CalendarKitMonthCellComponent extends NbCalendarDayPickerComponent<Date, Date>
-  implements NbCalendarCell<Date, Date> {
+export class CalendarKitMonthCellComponent
+  extends NbCalendarDayPickerComponent<Date, Date>
+  implements NbCalendarCell<Date, Date>
+{
   select: EventEmitter<Date> = new EventEmitter();
   selectedValue: Date;
 

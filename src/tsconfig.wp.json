@@ -2,9 +2,15 @@
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
     "paths": {
-      "@nebular/*": [
-        "dist/*"
-      ]
+      "@nebular/*": ["../dist/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
     }
   }
 }

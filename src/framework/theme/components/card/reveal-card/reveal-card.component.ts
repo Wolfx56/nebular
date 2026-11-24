@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, ChangeDetectionStrategy } from '@angular/core';
 
 /**
  *
@@ -55,9 +55,9 @@ import { Component, Input, HostBinding } from '@angular/core';
  * @additional-example(Multiple Sizes, reveal-card/reveal-card-sizes.component)
  */
 @Component({
-    selector: 'nb-reveal-card',
-    styleUrls: ['./reveal-card.component.scss'],
-    template: `
+  selector: 'nb-reveal-card',
+  styleUrls: ['./reveal-card.component.scss'],
+  template: `
     <ng-content select="nb-card-front"></ng-content>
     <div class="second-card-container">
       <ng-content select="nb-card-back"></ng-content>
@@ -66,7 +66,8 @@ import { Component, Input, HostBinding } from '@angular/core';
       <nb-icon icon="chevron-down-outline" pack="nebular-essentials" aria-hidden="true"></nb-icon>
     </a>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbRevealCardComponent {
   /**

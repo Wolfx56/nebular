@@ -7,14 +7,15 @@
     "declarationMap": true,
     "inlineSources": true,
     "types": [],
-    "lib": [
-      "dom",
-      "es2018"
-    ]
+    "lib": ["dom", "es2018"]
   },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts",
-    "schematics"
-  ]
+  "exclude": ["test.ts", "**/*.spec.ts", "schematics"],
+  "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
+    }
+  }
 }

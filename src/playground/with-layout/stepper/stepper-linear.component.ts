@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'nb-stepper-linear',
-    styleUrls: ['stepper-playground.component.scss'],
-    templateUrl: './stepper-linear.component.html',
-    standalone: false
+  selector: 'nb-stepper-linear',
+  styleUrls: ['stepper-playground.component.scss'],
+  templateUrl: './stepper-linear.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class StepperLinearComponent {
   linearMode = true;

@@ -1,20 +1,20 @@
-import { Component, NgModule, OnInit, ViewChild } from '@angular/core';
+import { Component, NgModule, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NbComponentPortal, NbOverlayContainerComponent, NbOverlayModule } from '@nebular/theme';
 
 @Component({
-    template: `
-    <nb-overlay-container></nb-overlay-container>
-  `,
-    standalone: false
+  template: ` <nb-overlay-container></nb-overlay-container> `,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbOverlayContainerTestComponent {
   @ViewChild(NbOverlayContainerComponent) overlayContainer: NbOverlayContainerComponent;
 }
 
 @Component({
-    template: `{{ contextProperty }}`,
-    standalone: false
+  template: `{{ contextProperty }}`,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbOverlayTestComponent implements OnInit {
   contextProperty;
@@ -32,8 +32,8 @@ export class NbOverlayTestComponent implements OnInit {
 // Has to define test module since there is no way to specify entry components
 // in 'TestBed.configureTestingModule'.
 @NgModule({
-  imports: [ NbOverlayModule.forRoot() ],
-  declarations: [ NbOverlayContainerTestComponent, NbOverlayTestComponent ],
+  imports: [NbOverlayModule.forRoot()],
+  declarations: [NbOverlayContainerTestComponent, NbOverlayTestComponent],
 })
 export class NbOverlayTestModule {}
 
@@ -42,7 +42,7 @@ describe('NbOverlayContainerComponent', () => {
   let overlayContainer: NbOverlayContainerComponent;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [ NbOverlayTestModule ] });
+    TestBed.configureTestingModule({ imports: [NbOverlayTestModule] });
 
     fixture = TestBed.createComponent(NbOverlayContainerTestComponent);
     fixture.detectChanges();

@@ -4,15 +4,15 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { NbAuthResult, NbAuthService, NbAuthToken } from '@nebular/auth';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { AuthAzureToken } from './azure-adb2c-auth-strategy';
 
 @Component({
-    selector: 'nb-playground-azure',
-    template: `
+  selector: 'nb-playground-azure',
+  template: `
     <nb-layout>
       <nb-layout-column>
         <nb-card>
@@ -27,7 +27,8 @@ import { AuthAzureToken } from './azure-adb2c-auth-strategy';
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AzureLoginComponent implements OnDestroy {
   token: AuthAzureToken;

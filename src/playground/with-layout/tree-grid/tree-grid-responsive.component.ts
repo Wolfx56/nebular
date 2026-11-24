@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 interface TreeNode<T> {
   data: T;
@@ -14,53 +14,47 @@ interface FSEntry {
 }
 
 @Component({
-    template: `
+  template: `
     <nb-card>
       <nb-card-body>
-
         <table [nbTreeGrid]="data" equalColumnsWidth>
-
           <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
           <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
 
           <ng-container nbTreeGridColumnDef="name">
             <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>name</th>
             <td nbTreeGridCell *nbTreeGridCellDef="let row">
-
-              <nb-tree-grid-row-toggle
-                [expanded]="row.expanded"
-                *ngIf="row.data.kind === 'dir'">
+              <nb-tree-grid-row-toggle [expanded]="row.expanded" *ngIf="row.data.kind === 'dir'">
               </nb-tree-grid-row-toggle>
 
-              {{row.data.name}}
-
+              {{ row.data.name }}
             </td>
           </ng-container>
 
           <ng-container nbTreeGridColumnDef="size" [hideOn]="600">
             <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>size</th>
-            <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data.size}}</td>
+            <td nbTreeGridCell *nbTreeGridCellDef="let row">{{ row.data.size }}</td>
           </ng-container>
 
           <ng-container nbTreeGridColumnDef="kind" [hideOn]="1000">
             <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>kind</th>
-            <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data.kind}}</td>
+            <td nbTreeGridCell *nbTreeGridCellDef="let row">{{ row.data.kind }}</td>
           </ng-container>
 
           <ng-container nbTreeGridColumnDef="items" [showOn]="1200">
             <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>items</th>
-            <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data.items || '-'}}</td>
+            <td nbTreeGridCell *nbTreeGridCellDef="let row">{{ row.data.items || '-' }}</td>
           </ng-container>
         </table>
-
       </nb-card-body>
     </nb-card>
   `,
-    styleUrls: ['./tree-grid-shared.scss'],
-    standalone: false
+  styleUrls: ['./tree-grid-shared.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TreeGridResponsiveComponent {
-  allColumns = [ 'name', 'size', 'kind', 'items' ];
+  allColumns = ['name', 'size', 'kind', 'items'];
 
   data: TreeNode<FSEntry>[] = [
     {
@@ -84,9 +78,7 @@ export class TreeGridResponsiveComponent {
       children: [
         {
           data: { name: 'Report 1', kind: 'dir', size: '100 KB', items: 1 },
-          children: [
-            { data: { name: 'report-1.doc', kind: 'doc', size: '100 KB' } },
-          ],
+          children: [{ data: { name: 'report-1.doc', kind: 'doc', size: '100 KB' } }],
         },
         {
           data: { name: 'Report 2', kind: 'dir', size: '300 KB', items: 2 },

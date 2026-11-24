@@ -4,11 +4,11 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'nb-toggle-status',
-    template: `
+  selector: 'nb-toggle-status',
+  template: `
     <nb-card>
       <nb-card-body class="example-items-rows">
         <nb-toggle status="basic">Basic</nb-toggle>
@@ -23,12 +23,14 @@ import { Component } from '@angular/core';
       </nb-card-body>
     </nb-card>
   `,
-    styles: [`
-    .example-items-rows {
-      align-items: center;
-    }
-  `],
-    standalone: false
+  styles: [
+    `
+      .example-items-rows {
+        align-items: center;
+      }
+    `,
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
-export class ToggleStatusComponent {
-}
+export class ToggleStatusComponent {}

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Component, Injectable, NgModule } from '@angular/core';
+import { Component, Injectable, NgModule, ChangeDetectionStrategy } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { OverlayRef } from '@angular/cdk/overlay';
 import {
@@ -25,8 +25,9 @@ export class MockViewportRulerAdapter extends NbViewportRulerAdapter {
 }
 
 @Component({
-    template: `portal-component`,
-    standalone: false
+  template: `portal-component`,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PortalComponent {}
 

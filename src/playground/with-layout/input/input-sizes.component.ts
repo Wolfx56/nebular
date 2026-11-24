@@ -4,20 +4,21 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    template: `
+  template: `
     <nb-card>
       <nb-card-body class="example-items-col">
-        <input type="text" nbInput fullWidth fieldSize="tiny" placeholder="Tiny">
-        <input type="text" nbInput fullWidth fieldSize="small" placeholder="Small">
-        <input type="text" nbInput fullWidth fieldSize="medium" placeholder="Medium">
-        <input type="text" nbInput fullWidth fieldSize="large" placeholder="Large">
-        <input type="text" nbInput fullWidth fieldSize="giant" placeholder="Giant">
+        <input type="text" nbInput fullWidth fieldSize="tiny" placeholder="Tiny" />
+        <input type="text" nbInput fullWidth fieldSize="small" placeholder="Small" />
+        <input type="text" nbInput fullWidth fieldSize="medium" placeholder="Medium" />
+        <input type="text" nbInput fullWidth fieldSize="large" placeholder="Large" />
+        <input type="text" nbInput fullWidth fieldSize="giant" placeholder="Giant" />
       </nb-card-body>
     </nb-card>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class InputSizesComponent {}

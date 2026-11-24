@@ -4,11 +4,11 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'nb-toggle-label-position',
-    template: `
+  selector: 'nb-toggle-label-position',
+  template: `
     <nb-card>
       <nb-card-body class="example-items-col">
         <nb-toggle labelPosition="start">Label Start</nb-toggle>
@@ -19,7 +19,7 @@ import { Component } from '@angular/core';
       </nb-card-body>
     </nb-card>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
-export class ToggleLabelPositionComponent {
-}
+export class ToggleLabelPositionComponent {}

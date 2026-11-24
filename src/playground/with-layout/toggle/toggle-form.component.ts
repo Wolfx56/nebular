@@ -4,12 +4,12 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-    selector: 'nb-toggle-form',
-    template: `
+  selector: 'nb-toggle-form',
+  template: `
     <nb-card>
       <nb-card-body class="example-items-col">
         <nb-toggle [(ngModel)]="toggleNgModel">Toggle with NgModel</nb-toggle>
@@ -17,12 +17,11 @@ import { FormControl } from '@angular/forms';
       </nb-card-body>
     </nb-card>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ToggleFormComponent {
-
   toggleNgModel = true;
 
   toggleFormControl = new FormControl();
-
 }

@@ -4,7 +4,7 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, EventEmitter, Input, Output, Type } from '@angular/core';
+import { Component, EventEmitter, Input, Output, Type, ChangeDetectionStrategy } from '@angular/core';
 
 import {
   NbCalendarCell,
@@ -14,7 +14,6 @@ import {
   NbCalendarViewModeValues,
 } from '../calendar-kit/model';
 import { convertToBoolProperty, NbBooleanInput } from '../helpers';
-
 
 /**
  * Calendar component provides a capability to choose a date.
@@ -194,8 +193,8 @@ import { convertToBoolProperty, NbBooleanInput } from '../helpers';
  * calendar-year-cell-large-height:
  * */
 @Component({
-    selector: 'nb-calendar',
-    template: `
+  selector: 'nb-calendar',
+  template: `
     <nb-base-calendar
       [boundingMonth]="boundingMonth"
       [startView]="startView"
@@ -215,10 +214,10 @@ import { convertToBoolProperty, NbBooleanInput } from '../helpers';
       (dateChange)="dateChange.emit($event)"
     ></nb-base-calendar>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbCalendarComponent<D> {
-
   /**
    * Defines if we should render previous and next months
    * in the current month view.

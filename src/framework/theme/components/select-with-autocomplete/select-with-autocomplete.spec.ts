@@ -4,7 +4,17 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, ElementRef, EventEmitter, Input, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -65,8 +75,8 @@ const TEST_GROUPS = [
 ];
 
 @Component({
-    selector: 'nb-select-test',
-    template: `
+  selector: 'nb-select-test',
+  template: `
     <nb-layout>
       <nb-layout-column>
         <nb-select-with-autocomplete
@@ -88,7 +98,8 @@ const TEST_GROUPS = [
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbSelectTestComponent {
   @Input() selected: any = null;
@@ -101,7 +112,7 @@ export class NbSelectTestComponent {
 }
 
 @Component({
-    template: `
+  template: `
     <nb-layout>
       <nb-layout-column>
         <nb-select-with-autocomplete>
@@ -112,12 +123,13 @@ export class NbSelectTestComponent {
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class BasicSelectTestComponent {}
 
 @Component({
-    template: `
+  template: `
     <nb-layout>
       <nb-layout-column>
         <nb-select-with-autocomplete [selected]="selected" [compareWith]="compareFn">
@@ -126,7 +138,8 @@ export class BasicSelectTestComponent {}
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbSelectWithOptionsObjectsComponent {
   @Input() compareFn = (o1: any, o2: any) => JSON.stringify(o1) === JSON.stringify(o2);
@@ -137,7 +150,7 @@ export class NbSelectWithOptionsObjectsComponent {
 }
 
 @Component({
-    template: `
+  template: `
     <nb-layout>
       <nb-layout-column>
         <nb-select-with-autocomplete [selected]="selected">
@@ -146,7 +159,8 @@ export class NbSelectWithOptionsObjectsComponent {
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbSelectWithInitiallySelectedOptionComponent {
   @Input() selected = 1;
@@ -154,7 +168,7 @@ export class NbSelectWithInitiallySelectedOptionComponent {
 }
 
 @Component({
-    template: `
+  template: `
     <nb-layout>
       <nb-layout-column>
         <nb-select-with-autocomplete *ngIf="showSelect" [formControl]="formControl">
@@ -163,7 +177,8 @@ export class NbSelectWithInitiallySelectedOptionComponent {
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbReactiveFormSelectComponent {
   options: number[] = [1];
@@ -175,7 +190,7 @@ export class NbReactiveFormSelectComponent {
 }
 
 @Component({
-    template: `
+  template: `
     <nb-layout>
       <nb-layout-column>
         <nb-select-with-autocomplete [(ngModel)]="selectedValue">
@@ -184,7 +199,8 @@ export class NbReactiveFormSelectComponent {
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbNgModelSelectComponent {
   options: number[] = [1];
@@ -194,7 +210,7 @@ export class NbNgModelSelectComponent {
 }
 
 @Component({
-    template: `
+  template: `
     <nb-layout>
       <nb-layout-column>
         <nb-select-with-autocomplete>
@@ -210,7 +226,8 @@ export class NbNgModelSelectComponent {
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbSelectWithFalsyOptionValuesComponent {
   nanValue = NaN;
@@ -269,7 +286,7 @@ export class NbSelectWithFalsyOptionValuesComponent {
 }
 
 @Component({
-    template: `
+  template: `
     <nb-layout>
       <nb-layout-column>
         <nb-select-with-autocomplete multiple>
@@ -285,12 +302,13 @@ export class NbSelectWithFalsyOptionValuesComponent {
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbMultipleSelectWithFalsyOptionValuesComponent extends NbSelectWithFalsyOptionValuesComponent {}
 
 @Component({
-    template: `
+  template: `
     <nb-layout>
       <nb-layout-column>
         <nb-select-with-autocomplete>
@@ -301,7 +319,8 @@ export class NbMultipleSelectWithFalsyOptionValuesComponent extends NbSelectWith
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbOptionDisabledTestComponent {
   optionGroupDisabled = false;
@@ -1251,7 +1270,7 @@ describe('NbSelect - dynamic options', () => {
 });
 
 @Component({
-    template: `
+  template: `
     <nb-layout>
       <nb-layout-column>
         <nb-select-with-autocomplete
@@ -1266,7 +1285,8 @@ describe('NbSelect - dynamic options', () => {
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbSelectWithExperimentalSearchComponent {
   options: number[] = [1, 2, 3, 4, 5];

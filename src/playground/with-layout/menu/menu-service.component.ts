@@ -4,15 +4,15 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { NbMenuService } from '@nebular/theme';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { MENU_ITEMS } from './menu-service-items';
 
 @Component({
-    selector: 'nb-menu-services',
-    template: `
+  selector: 'nb-menu-services',
+  template: `
     <nb-card size="giant">
       <nb-menu tag="menu" [items]="menuItems"></nb-menu>
       <div class="control-panel">
@@ -25,17 +25,17 @@ import { MENU_ITEMS } from './menu-service-items';
       </div>
     </nb-card>
   `,
-    styleUrls: ['./menu-service.component.scss'],
-    standalone: false
+  styleUrls: ['./menu-service.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MenuServiceComponent implements OnDestroy {
-
   menuItems = MENU_ITEMS;
 
   private destroy$ = new Subject<void>();
   selectedItem: string;
 
-  constructor(private menuService: NbMenuService) { }
+  constructor(private menuService: NbMenuService) {}
 
   ngOnDestroy() {
     this.destroy$.next();
@@ -43,12 +43,17 @@ export class MenuServiceComponent implements OnDestroy {
   }
 
   addMenuItem() {
-    this.menuService.addItems([{
-      title: '@nebular/theme',
-      target: '_blank',
-      icon: 'plus-outline',
-      url: 'https://github.com/akveo/ngx-admin',
-    }], 'menu');
+    this.menuService.addItems(
+      [
+        {
+          title: '@nebular/theme',
+          target: '_blank',
+          icon: 'plus-outline',
+          url: 'https://github.com/akveo/ngx-admin',
+        },
+      ],
+      'menu',
+    );
   }
 
   collapseAll() {
@@ -60,9 +65,10 @@ export class MenuServiceComponent implements OnDestroy {
   }
 
   getSelectedItem() {
-    this.menuService.getSelectedItem('menu')
+    this.menuService
+      .getSelectedItem('menu')
       .pipe(takeUntil(this.destroy$))
-      .subscribe( (menuBag) => {
+      .subscribe((menuBag) => {
         this.selectedItem = menuBag.item.title;
       });
   }

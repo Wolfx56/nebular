@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.schematics.json",
   "compilerOptions": {
+    "strict": false,
     "types": [
       "jasmine"
     ]

@@ -1,9 +1,9 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, HostBinding, ChangeDetectionStrategy } from '@angular/core';
 import { NbToastrService, NbComponentStatus } from '@nebular/theme';
 
 @Component({
-    selector: 'nb-toastr-statuses',
-    template: `
+  selector: 'nb-toastr-statuses',
+  template: `
     <nb-card>
       <nb-card-body class="example-items-rows">
         <button nbButton status="basic" (click)="showToast('basic')">Basic</button>
@@ -16,14 +16,15 @@ import { NbToastrService, NbComponentStatus } from '@nebular/theme';
       </nb-card-body>
     </nb-card>
   `,
-    styles: [
-        `
+  styles: [
+    `
       ::ng-deep nb-layout-column {
         height: 80vw;
       }
     `,
-    ],
-    standalone: false
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ToastrStatusesComponent {
   private index: number = 0;
@@ -31,8 +32,7 @@ export class ToastrStatusesComponent {
   @HostBinding('class')
   classes = 'example-items-rows';
 
-  constructor(private toastrService: NbToastrService) {
-  }
+  constructor(private toastrService: NbToastrService) {}
 
   showToast(status: NbComponentStatus) {
     this.toastrService.show(status, `Toast: ${++this.index}`, { status });

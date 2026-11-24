@@ -5,7 +5,7 @@
  */
 
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
-import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
+import { ProjectDefinition } from '@schematics/angular/utility';
 import { join, normalize, Path } from '@angular-devkit/core';
 
 import { createThemeContent, stylesContent } from './theme-content';

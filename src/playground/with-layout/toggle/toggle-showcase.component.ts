@@ -4,18 +4,18 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'nb-toggle-showcase',
-    template: `
+  selector: 'nb-toggle-showcase',
+  template: `
     <nb-card>
       <nb-card-body>
         <nb-toggle></nb-toggle>
       </nb-card-body>
     </nb-card>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
-export class ToggleShowcaseComponent {
-}
+export class ToggleShowcaseComponent {}

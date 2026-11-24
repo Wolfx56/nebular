@@ -1,4 +1,4 @@
-import { Component, QueryList, Type, ViewChild, ViewChildren } from '@angular/core';
+import { Component, QueryList, Type, ViewChild, ViewChildren, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 import { EMPTY } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -30,8 +30,9 @@ interface CustomStructure {
 }
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 class BaseTreeGridTestComponent {
   columns: string[];
@@ -42,7 +43,7 @@ class BaseTreeGridTestComponent {
 }
 
 @Component({
-    template: `
+  template: `
     <table [nbTreeGrid]="dataSource">
       <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: columns"></tr>
 
@@ -52,12 +53,13 @@ class BaseTreeGridTestComponent {
       </ng-container>
     </table>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TreeGridBasicTestComponent extends BaseTreeGridTestComponent {}
 
 @Component({
-    template: `
+  template: `
     <table [nbTreeGrid]="dataSource">
       <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="columns"></tr>
       <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: columns"></tr>
@@ -68,7 +70,8 @@ export class TreeGridBasicTestComponent extends BaseTreeGridTestComponent {}
       </ng-container>
     </table>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TreeGridWithHeaderTestComponent extends BaseTreeGridTestComponent {}
 

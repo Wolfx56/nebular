@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { of as observableOf, Subject } from 'rxjs';
 import { takeUntil, delay } from 'rxjs/operators';
@@ -6,21 +6,23 @@ import { NB_DOCUMENT, NbThemeService } from '@nebular/theme';
 import { NgdAnalytics, NgdIframeCommunicatorService } from '../@theme/services';
 
 @Component({
-    selector: 'ngd-example',
-    template: '<router-outlet></router-outlet>',
-    styleUrls: ['./example.component.scss'],
-    standalone: false
+  selector: 'ngd-example',
+  template: '<router-outlet></router-outlet>',
+  styleUrls: ['./example.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NgdExampleComponent implements OnInit, AfterViewInit, OnDestroy {
   private id: string;
   private destroy$ = new Subject<void>();
 
-  constructor(private communicator: NgdIframeCommunicatorService,
-              private themeService: NbThemeService,
-              private router: Router,
-              private analytics: NgdAnalytics,
-              @Inject(NB_DOCUMENT) private document) {
-  }
+  constructor(
+    private communicator: NgdIframeCommunicatorService,
+    private themeService: NbThemeService,
+    private router: Router,
+    private analytics: NgdAnalytics,
+    @Inject(NB_DOCUMENT) private document,
+  ) {}
 
   ngOnInit() {
     this.setupId();
@@ -44,9 +46,10 @@ export class NgdExampleComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private subscribeOnThemeSwitch() {
-    this.communicator.receive(this.id)
+    this.communicator
+      .receive(this.id)
       .pipe(takeUntil(this.destroy$))
-      .subscribe(payload => this.changeTheme(payload))
+      .subscribe((payload) => this.changeTheme(payload));
   }
 
   private changeTheme(payload) {

@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
+    "strict": false,
     "experimentalDecorators": true,
     "noUnusedParameters": true,
     "lib": [
       "es2017"
     ],
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "node16",
+    "moduleResolution": "node16",
     "strictNullChecks": true,
     "target": "es2018",
     "typeRoots": [
@@ -14,8 +15,7 @@
     ],
     "types": [
       "node"
-    ],
-    "baseUrl": "."
+    ]
   },
   "files": [
     "gulpfile.ts"

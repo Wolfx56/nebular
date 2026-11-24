@@ -4,12 +4,13 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'npg-select-autocomplete-showcase',
-    templateUrl: './select-autocomplete-showcase.component.html',
-    standalone: false
+  selector: 'npg-select-autocomplete-showcase',
+  templateUrl: './select-autocomplete-showcase.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SelectAutocompleteShowcaseComponent {
   withAutocomplete = true;

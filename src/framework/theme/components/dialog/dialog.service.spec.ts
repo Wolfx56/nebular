@@ -1,4 +1,4 @@
-import { Component, NgModule, Injectable } from '@angular/core';
+import { Component, NgModule, Injectable, ChangeDetectionStrategy } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import {
@@ -22,8 +22,10 @@ export class NbViewportRulerMockAdapter extends NbViewportRulerAdapter {
 }
 
 @Component({
-    selector: 'nb-test-dialog', template: '<button class="test-focusable-button"></button>',
-    standalone: false
+  selector: 'nb-test-dialog',
+  template: '<button class="test-focusable-button"></button>',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 class NbTestDialogComponent {}
 

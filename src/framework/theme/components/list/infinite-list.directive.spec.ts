@@ -1,4 +1,4 @@
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, ChangeDetectionStrategy } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { By } from '@angular/platform-browser';
@@ -39,7 +39,7 @@ function setup() {
 }
 
 @Component({
-    template: `
+  template: `
     <nb-layout [withScroll]="withScroll">
       <nb-layout-column>
         <nb-list
@@ -58,8 +58,8 @@ function setup() {
       </nb-layout-column>
     </nb-layout>
   `,
-    styles: [
-        `
+  styles: [
+    `
       ::ng-deep nb-layout.with-scroll .scrollable-container {
         overflow: auto;
         height: 100vh;
@@ -77,8 +77,9 @@ function setup() {
         height: ${CONTENT_HEIGHT}px;
       }
     `,
-    ],
-    standalone: false
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 class ScrollTestComponent {
   listenWindowScroll = false;

@@ -1,4 +1,4 @@
-import { Component, Inject, Input, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Inject, Input, TemplateRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { NbStepperComponent } from './stepper.component';
 import { NB_STEPPER } from './stepper-tokens';
 import { convertToBoolProperty, NbBooleanInput } from '../helpers';
@@ -8,16 +8,16 @@ import { convertToBoolProperty, NbBooleanInput } from '../helpers';
  * Container for a step
  */
 @Component({
-    selector: 'nb-step',
-    template: `
+  selector: 'nb-step',
+  template: `
     <ng-template>
       <ng-content></ng-content>
     </ng-template>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbStepComponent {
-
   protected stepper: NbStepperComponent;
 
   // TODO static must be false as of Angular 9.0.0, issues/1514
@@ -31,14 +31,14 @@ export class NbStepComponent {
   /**
    * Top level abstract control of the step
    */
-  @Input() stepControl?: { valid: boolean | null, reset: () => void };
+  @Input() stepControl?: { valid: boolean | null; reset: () => void };
 
   /**
    * Step label
    *
    * @type {string|TemplateRef<any>}
    */
-  @Input() label: string|TemplateRef<any>;
+  @Input() label: string | TemplateRef<any>;
 
   /**
    * Whether step will be displayed in wizard

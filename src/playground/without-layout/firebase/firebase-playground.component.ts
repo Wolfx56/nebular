@@ -4,14 +4,12 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'nb-firebase-playground',
-    template: `
-    <router-outlet></router-outlet>
-  `,
-    standalone: false
+  selector: 'nb-firebase-playground',
+  template: ` <router-outlet></router-outlet> `,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
-export class FirebasePlaygroundComponent {
-}
+export class FirebasePlaygroundComponent {}

@@ -3,13 +3,13 @@
  * Copyright Akveo. All Rights Reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NbLoginComponent } from '@nebular/auth';
 
 @Component({
-    selector: 'ngx-login',
-    templateUrl: './login.component.html',
-    standalone: false
+  selector: 'ngx-login',
+  templateUrl: './login.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
-export class LoginComponent extends NbLoginComponent {
-}
+export class LoginComponent extends NbLoginComponent {}

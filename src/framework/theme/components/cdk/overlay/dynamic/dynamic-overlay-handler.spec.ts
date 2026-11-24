@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { Subject } from 'rxjs';
-import { Component, ComponentRef, ElementRef, Injectable, Input, Type } from '@angular/core';
+import { Component, ComponentRef, ElementRef, Injectable, Input, Type, ChangeDetectionStrategy } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import {
   NbOverlayConfig,
@@ -20,8 +20,9 @@ import {
 } from '@nebular/theme';
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbDynamicOverlayMockComponent implements NbRenderableContainer {
   @Input() content: any;
@@ -31,8 +32,9 @@ export class NbDynamicOverlayMockComponent implements NbRenderableContainer {
 }
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbDynamicOverlayMock2Component extends NbDynamicOverlayMockComponent {}
 

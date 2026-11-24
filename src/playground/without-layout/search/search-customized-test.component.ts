@@ -4,13 +4,13 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { NbSearchService } from '@nebular/theme';
 
 @Component({
-    selector: 'nb-search-test-customized',
-    template: `
+  selector: 'nb-search-test-customized',
+  template: `
     <nb-layout>
       <nb-layout-header fixed>
         <a class="navbar-brand" href="#">ngx-admin</a>
@@ -70,7 +70,8 @@ import { NbSearchService } from '@nebular/theme';
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SearchCustomizedTestComponent implements OnInit {
   constructor(private searchService: NbSearchService) {}

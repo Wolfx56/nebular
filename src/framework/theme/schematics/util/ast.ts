@@ -7,7 +7,7 @@
 import { Tree } from '@angular-devkit/schematics';
 import { dirname, normalize, Path } from '@angular-devkit/core';
 import { getProjectMainFile, hasNgModuleImport } from '@angular/cdk/schematics';
-import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
+import { ProjectDefinition } from '@schematics/angular/utility';
 import { findBootstrapModuleCall } from '@schematics/angular/utility/ng-ast-utils';
 
 export function isImportedInMainModule(tree: Tree, project: ProjectDefinition, moduleName: string): boolean {
@@ -15,7 +15,6 @@ export function isImportedInMainModule(tree: Tree, project: ProjectDefinition, m
 
   return hasNgModuleImport(tree, appModulePath, moduleName);
 }
-
 
 export function getAppModulePath(host: Tree, mainPath: string): string {
   const moduleRelativePath = findBootstrapModuleCall(host, mainPath);

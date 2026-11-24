@@ -4,14 +4,13 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
-
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'nb-tooltip-placements',
-    templateUrl: './tooltip-placements.component.html',
-    styleUrls: ['./tooltip-examples.scss'],
-    standalone: false
+  selector: 'nb-tooltip-placements',
+  templateUrl: './tooltip-placements.component.html',
+  styleUrls: ['./tooltip-examples.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
-export class TooltipPlacementsComponent {
-}
+export class TooltipPlacementsComponent {}
