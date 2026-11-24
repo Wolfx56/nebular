@@ -4,7 +4,7 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { NbStatusService } from '../../services/status.service';
 import { NbComponentSize } from '../component-size';
@@ -48,16 +48,16 @@ import { NbComponentOrCustomStatus } from '../component-status';
  * spinner-height-giant:
  */
 @Component({
-    selector: 'nb-spinner',
-    template: `
+  selector: 'nb-spinner',
+  template: `
     <span class="spin-circle"></span>
     <span class="message" *ngIf="message">{{ message }}</span>
   `,
-    styleUrls: ['./spinner.component.scss'],
-    standalone: false
+  styleUrls: ['./spinner.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbSpinnerComponent {
-
   /**
    * Loading text that is shown near the icon
    * @type string
@@ -147,6 +147,5 @@ export class NbSpinnerComponent {
     return [];
   }
 
-  constructor(protected statusService: NbStatusService) {
-  }
+  constructor(protected statusService: NbStatusService) {}
 }

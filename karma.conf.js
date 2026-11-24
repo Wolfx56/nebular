@@ -49,6 +49,10 @@ module.exports = function (config) {
   };
 
   if (process.env.CI) {
+    configuration.singleRun = true;
+  }
+
+  if (process.env.CI && process.env.BROWSERSTACK_USERNAME) {
     config.browserStack = {
       startTunnel: false,
       build: process.env.BROWSERSTACK_BUILD_NAME,
@@ -59,7 +63,6 @@ module.exports = function (config) {
       user: process.env.BROWSERSTACK_USERNAME,
       key: process.env.BROWSERSTACK_ACCESS_KEY,
     };
-    configuration.singleRun = true;
     configuration.browsers = ['BrowserstackChromeCI'];
     configuration.reporters.push('BrowserStack');
   }

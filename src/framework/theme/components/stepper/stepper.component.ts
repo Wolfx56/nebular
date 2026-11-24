@@ -13,6 +13,7 @@ import {
   Output,
   QueryList,
   TemplateRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { convertToBoolProperty, NbBooleanInput } from '../helpers';
 import { NB_STEPPER } from './stepper-tokens';
@@ -118,11 +119,12 @@ export interface NbStepChangeEvent {
  * stepper-step-content-padding:
  */
 @Component({
-    selector: 'nb-stepper',
-    styleUrls: ['./stepper.component.scss'],
-    templateUrl: './stepper.component.html',
-    providers: [{ provide: NB_STEPPER, useExisting: NbStepperComponent }],
-    standalone: false
+  selector: 'nb-stepper',
+  styleUrls: ['./stepper.component.scss'],
+  templateUrl: './stepper.component.html',
+  providers: [{ provide: NB_STEPPER, useExisting: NbStepperComponent }],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbStepperComponent {
   /**

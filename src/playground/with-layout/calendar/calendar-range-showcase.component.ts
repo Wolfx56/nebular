@@ -4,14 +4,13 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { NbCalendarRange, NbDateService } from '@nebular/theme';
 
-
 @Component({
-    selector: 'nb-calendar-range-showcase',
-    template: `
+  selector: 'nb-calendar-range-showcase',
+  template: `
     <nb-card>
       <nb-card-header>
         <h1 class="h5">Selected range: {{ range.start | date }} - {{ range.end | date }}</h1>
@@ -21,7 +20,8 @@ import { NbCalendarRange, NbDateService } from '@nebular/theme';
       </nb-card-body>
     </nb-card>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CalendarRangeShowcaseComponent {
   range: NbCalendarRange<Date>;

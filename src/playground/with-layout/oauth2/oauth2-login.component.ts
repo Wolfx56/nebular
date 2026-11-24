@@ -4,14 +4,14 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { NbAuthOAuth2Token, NbAuthResult, NbAuthService, NbAuthToken } from '@nebular/auth';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 @Component({
-    selector: 'nb-playground-auth',
-    template: `
+  selector: 'nb-playground-auth',
+  template: `
     <nb-layout>
       <nb-layout-column>
         <nb-card>
@@ -26,7 +26,8 @@ import { Subject } from 'rxjs';
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class OAuth2LoginComponent implements OnDestroy {
   token: NbAuthOAuth2Token;

@@ -4,26 +4,25 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
-
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'nb-context-menu-modes',
-    templateUrl: './context-menu-modes.component.html',
-    styles: [`
-    :host nb-layout-column {
-      height: 50vw;
-    }
+  selector: 'nb-context-menu-modes',
+  templateUrl: './context-menu-modes.component.html',
+  styles: [
+    `
+      :host nb-layout-column {
+        height: 50vw;
+      }
 
-    button {
-      margin-right: 1rem;
-    }
-  `],
-    standalone: false
+      button {
+        margin-right: 1rem;
+      }
+    `,
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ContextMenuModesComponent {
-  items = [
-    { title: 'Profile' },
-    { title: 'Logout' },
-  ];
+  items = [{ title: 'Profile' }, { title: 'Logout' }];
 }

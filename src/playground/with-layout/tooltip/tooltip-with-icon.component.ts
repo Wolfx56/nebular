@@ -4,14 +4,13 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
-
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'nb-tooltip-with-icon',
-    templateUrl: './tooltip-with-icon.component.html',
-    styleUrls: ['./tooltip-examples.scss'],
-    standalone: false
+  selector: 'nb-tooltip-with-icon',
+  templateUrl: './tooltip-with-icon.component.html',
+  styleUrls: ['./tooltip-examples.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
-export class TooltipWithIconComponent {
-}
+export class TooltipWithIconComponent {}

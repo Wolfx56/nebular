@@ -1,6 +1,6 @@
 import { ComponentFixture, fakeAsync, inject, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbRestoreScrollTopHelper } from '@nebular/theme';
 
@@ -9,14 +9,16 @@ let router: Router;
 let fixture: ComponentFixture<TestBootstrapComponent>;
 
 @Component({
-    template: '<router-outlet></router-outlet>',
-    standalone: false
+  template: '<router-outlet></router-outlet>',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 class TestBootstrapComponent {}
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 class TestComponent {}
 
@@ -54,14 +56,12 @@ describe('NbRestoreScrollTopHelper', () => {
     fixture.detectChanges();
   });
 
-  beforeEach(
-    waitForAsync(
-      inject([NbRestoreScrollTopHelper, Router], (_restoreHelper, _router) => {
-        restoreHelper = _restoreHelper;
-        router = _router;
-      }),
-    ),
-  );
+  beforeEach(waitForAsync(
+    inject([NbRestoreScrollTopHelper, Router], (_restoreHelper, _router) => {
+      restoreHelper = _restoreHelper;
+      router = _router;
+    }),
+  ));
 
   afterEach(fakeAsync(() => {
     fixture.destroy();

@@ -4,14 +4,14 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NbMenuService, NbMenuItem } from '@nebular/theme';
 
 @Component({
-    selector: 'nb-menu-test',
-    template: `
+  selector: 'nb-menu-test',
+  template: `
     <nb-layout>
       <nb-sidebar state="compacted">
         <nb-menu id="menu-sidebar" tag="sidebarMenu" [items]="sidebarMenuItems"></nb-menu>
@@ -41,7 +41,8 @@ import { NbMenuService, NbMenuItem } from '@nebular/theme';
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MenuTestComponent implements OnInit, OnDestroy {
   sidebarMenuItems: NbMenuItem[] = [
@@ -164,7 +165,7 @@ export class MenuTestComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  constructor(private menuService: NbMenuService) { }
+  constructor(private menuService: NbMenuService) {}
 
   ngOnInit() {
     this.menuService

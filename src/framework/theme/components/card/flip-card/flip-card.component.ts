@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, ChangeDetectionStrategy } from '@angular/core';
 
 /**
  *
@@ -56,9 +56,9 @@ import { Component, Input, HostBinding } from '@angular/core';
  *
  */
 @Component({
-    selector: 'nb-flip-card',
-    styleUrls: ['./flip-card.component.scss'],
-    template: `
+  selector: 'nb-flip-card',
+  styleUrls: ['./flip-card.component.scss'],
+  template: `
     <div class="flipcard-body">
       <div class="front-container">
         <ng-content select="nb-card-front"></ng-content>
@@ -74,7 +74,8 @@ import { Component, Input, HostBinding } from '@angular/core';
       </div>
     </div>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbFlipCardComponent {
   /**

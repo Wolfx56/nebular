@@ -4,12 +4,12 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'nb-select-filled',
-    templateUrl: './select-filled.component.html',
-    standalone: false
+  selector: 'nb-select-filled',
+  templateUrl: './select-filled.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
-export class SelectFilledComponent {
-}
+export class SelectFilledComponent {}

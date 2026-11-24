@@ -1,19 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { BackdropClickDialogComponent } from './components/backdrop-click-dialog.component';
 
 @Component({
-    selector: 'nb-dialog-backdrop-click',
-    template: `
+  selector: 'nb-dialog-backdrop-click',
+  template: `
     <button nbButton (click)="openWithBackdropClick()">With backdrop click close</button>
     <button nbButton (click)="openWithoutBackdropClick()">Without backdrop click close</button>
   `,
-    styleUrls: ['./dialog-common.scss'],
-    standalone: false
+  styleUrls: ['./dialog-common.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DialogBackdropClickComponent {
-  constructor(private dialogService: NbDialogService) {
-  }
+  constructor(private dialogService: NbDialogService) {}
 
   openWithBackdropClick() {
     this.open(true);

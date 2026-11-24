@@ -65,7 +65,7 @@
     $theme: map.merge($parent-theme, $theme);
   }
   $theme: map.merge(mapping.$eva-mapping, $theme);
-  $nb-themes: functions.map-set(theming-variables.$nb-themes, $name, $theme) !global;
+  theming-variables.$nb-themes: functions.map-set(theming-variables.$nb-themes, $name, $theme);
 
-  @return $nb-themes;
+  @return theming-variables.$nb-themes;
 }

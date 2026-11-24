@@ -4,13 +4,13 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'npg-datepicker-dynamic-inputs-showcase',
-    templateUrl: './datepicker-dynamic-inputs-showcase.component.html',
-    styles: [
-        `
+  selector: 'npg-datepicker-dynamic-inputs-showcase',
+  templateUrl: './datepicker-dynamic-inputs-showcase.component.html',
+  styles: [
+    `
       section {
         margin-bottom: 2rem;
       }
@@ -19,8 +19,9 @@ import { Component } from '@angular/core';
         margin-left: 1rem;
       }
     `,
-    ],
-    standalone: false
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DatepickerDynamicInputsShowcaseComponent {
   now = new Date();

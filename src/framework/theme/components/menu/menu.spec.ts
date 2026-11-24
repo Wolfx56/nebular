@@ -12,6 +12,7 @@ import {
   ViewChildren,
   Injectable,
   ProviderToken,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, Routes } from '@angular/router';
@@ -44,14 +45,16 @@ import {
 import { NbMenuInternalService } from './menu.service';
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NoopComponent {}
 
 @Component({
-    template: `<nb-menu [items]="items" [tag]="menuTag"></nb-menu>`,
-    standalone: false
+  template: `<nb-menu [items]="items" [tag]="menuTag"></nb-menu>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SingleMenuTestComponent {
   constructor(public menuPublicService: NbMenuService) {}
@@ -61,11 +64,12 @@ export class SingleMenuTestComponent {
 }
 
 @Component({
-    template: `
+  template: `
     <nb-menu [items]="firstMenuItems" [tag]="firstMenuTag"></nb-menu>
     <nb-menu [items]="secondMenuItems" [tag]="secondMenuTag"></nb-menu>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DoubleMenusTestComponent {
   constructor(public menuPublicService: NbMenuService) {}

@@ -4,7 +4,7 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { ApplicationRef, Component, ViewChild } from '@angular/core';
+import { ApplicationRef, Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { skip } from 'rxjs/operators';
@@ -21,8 +21,8 @@ import {
 } from '@nebular/theme';
 
 @Component({
-    selector: 'nb-datepicker-test',
-    template: `
+  selector: 'nb-datepicker-test',
+  template: `
     <nb-layout>
       <nb-layout-column>
         <input [nbDatepicker]="datepicker" />
@@ -30,7 +30,8 @@ import {
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbDatepickerTestComponent {
   @ViewChild(NbDatepickerComponent) datepicker: NbDatepickerComponent<Date>;
@@ -38,8 +39,8 @@ export class NbDatepickerTestComponent {
 }
 
 @Component({
-    selector: 'nb-rangepicker-test',
-    template: `
+  selector: 'nb-rangepicker-test',
+  template: `
     <nb-layout>
       <nb-layout-column>
         <input [nbDatepicker]="rangepicker" />
@@ -47,7 +48,8 @@ export class NbDatepickerTestComponent {
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbRangepickerTestComponent {
   @ViewChild(NbRangepickerComponent) rangepicker: NbRangepickerComponent<Date>;
@@ -55,8 +57,8 @@ export class NbRangepickerTestComponent {
 }
 
 @Component({
-    selector: 'nb-date-timepicker-test',
-    template: `
+  selector: 'nb-date-timepicker-test',
+  template: `
     <nb-layout>
       <nb-layout-column>
         <input [nbDatepicker]="rangepicker" />
@@ -64,7 +66,8 @@ export class NbRangepickerTestComponent {
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbDateTimepickerTestComponent {
   @ViewChild(NbDateTimePickerComponent) dateTimepicker: NbDateTimePickerComponent<Date>;

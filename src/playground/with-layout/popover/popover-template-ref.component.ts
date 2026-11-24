@@ -4,19 +4,20 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
-
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'nb-popover-template-ref',
-    templateUrl: './popover-template-ref.component.html',
-    styles: [`
-    :host {
-      display: block;
-      margin-bottom: 5rem;
-    }
-  `],
-    standalone: false
+  selector: 'nb-popover-template-ref',
+  templateUrl: './popover-template-ref.component.html',
+  styles: [
+    `
+      :host {
+        display: block;
+        margin-bottom: 5rem;
+      }
+    `,
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
-export class PopoverTemplateRefComponent {
-}
+export class PopoverTemplateRefComponent {}

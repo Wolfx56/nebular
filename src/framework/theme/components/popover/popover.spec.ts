@@ -1,4 +1,13 @@
-import { Component, ElementRef, Input, NgModule, TemplateRef, Type, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  NgModule,
+  TemplateRef,
+  Type,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Subject } from 'rxjs';
@@ -20,24 +29,26 @@ import {
 } from '@nebular/theme';
 
 @Component({
-    selector: 'nb-popover-component-content-test',
-    template: 'test, {{ text }}',
-    standalone: false
+  selector: 'nb-popover-component-content-test',
+  template: 'test, {{ text }}',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbPopoverComponentContentTestComponent {
   text: string;
 }
 
 @Component({
-    selector: 'nb-popover-default-test',
-    template: `
+  selector: 'nb-popover-default-test',
+  template: `
     <nb-layout>
       <nb-layout-column>
         <button #button nbPopover="test" [nbPopoverClass]="popoverClass">show popover</button>
       </nb-layout-column>
     </nb-layout>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbPopoverDefaultTestComponent {
   @ViewChild('button') button: ElementRef;
@@ -47,8 +58,8 @@ export class NbPopoverDefaultTestComponent {
 }
 
 @Component({
-    selector: 'nb-popover-bindings-test',
-    template: `
+  selector: 'nb-popover-bindings-test',
+  template: `
     <nb-layout>
       <nb-layout-column>
         <button
@@ -64,7 +75,8 @@ export class NbPopoverDefaultTestComponent {
 
     <ng-template let-data>Some Template {{ data.text }}</ng-template>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbPopoverBindingsTestComponent {
   @ViewChild(NbPopoverDirective) popover: NbPopoverDirective;
@@ -78,8 +90,8 @@ export class NbPopoverBindingsTestComponent {
 }
 
 @Component({
-    selector: 'nb-popover-instance-test',
-    template: `
+  selector: 'nb-popover-instance-test',
+  template: `
     <nb-layout>
       <nb-layout-column>
         <button #button nbPopover="test"></button>
@@ -88,7 +100,8 @@ export class NbPopoverBindingsTestComponent {
 
     <ng-template>Some Template</ng-template>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbPopoverInstanceTestComponent {
   @ViewChild(NbPopoverDirective) popover: NbPopoverDirective;
@@ -201,14 +214,12 @@ class PopoverTestModule {}
 describe('Directive: NbPopoverDirective', () => {
   const overlayHandler = new NbDynamicOverlayHandlerMock();
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.resetTestingModule();
-      TestBed.configureTestingModule({
-        imports: [RouterTestingModule.withRoutes([]), NbThemeModule.forRoot(), PopoverTestModule],
-      });
-    }),
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule.withRoutes([]), NbThemeModule.forRoot(), PopoverTestModule],
+    });
+  }));
 
   describe('smoke ', () => {
     let fixture: ComponentFixture<any>;
@@ -321,18 +332,16 @@ describe('Directive: NbPopoverDirective', () => {
   });
 
   describe('mocked services', () => {
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.resetTestingModule();
-        TestBed.configureTestingModule({
-          imports: [RouterTestingModule.withRoutes([]), NbThemeModule.forRoot(), PopoverTestModule],
-        }).overrideDirective(NbPopoverDirective, {
-          set: {
-            providers: [{ provide: NbDynamicOverlayHandler, useValue: overlayHandler }],
-          },
-        });
-      }),
-    );
+    beforeEach(waitForAsync(() => {
+      TestBed.resetTestingModule();
+      TestBed.configureTestingModule({
+        imports: [RouterTestingModule.withRoutes([]), NbThemeModule.forRoot(), PopoverTestModule],
+      }).overrideDirective(NbPopoverDirective, {
+        set: {
+          providers: [{ provide: NbDynamicOverlayHandler, useValue: overlayHandler }],
+        },
+      });
+    }));
     describe('default popover', () => {
       let fixture: ComponentFixture<NbPopoverDefaultTestComponent>;
 

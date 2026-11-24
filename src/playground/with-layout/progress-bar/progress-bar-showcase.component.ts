@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'nb-progress-bar-showcase',
-    templateUrl: './progress-bar-showcase.component.html',
-    standalone: false
+  selector: 'nb-progress-bar-showcase',
+  templateUrl: './progress-bar-showcase.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
-
-export class ProgressBarShowcaseComponent {
-}
+export class ProgressBarShowcaseComponent {}

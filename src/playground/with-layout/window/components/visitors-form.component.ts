@@ -4,12 +4,12 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NbWindowRef } from '@nebular/theme';
 
 @Component({
-    template: `
+  template: `
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
       <label for="name">Enter your name:</label>
       <input nbInput id="name" type="text" formControlName="name" />
@@ -17,7 +17,8 @@ import { NbWindowRef } from '@nebular/theme';
       <button nbButton type="submit" status="success">Submit</button>
     </form>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class VisitorsFormComponent {
   form: FormGroup;

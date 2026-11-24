@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NbChatModule, NbThemeModule, NbChatCustomMessageService } from '@nebular/theme';
 
 @Component({
-    selector: 'nb-custom-message-directive-test',
-    template: `
+  selector: 'nb-custom-message-directive-test',
+  template: `
     <div *nbCustomMessage="customMessageType">
       <p>Hello world</p>
     </div>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbCustomMessageTestComponent {
   customMessageType: string = 'simpleMessageType';

@@ -4,7 +4,7 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil, withLatestFrom, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -16,10 +16,11 @@ import { NgdPaginationService } from '../@theme/services';
 import { NbMediaBreakpoint } from '@nebular/theme';
 
 @Component({
-    selector: 'ngd-documentation',
-    templateUrl: './documentation.component.html',
-    styleUrls: ['./documentation.component.scss'],
-    standalone: false
+  selector: 'ngd-documentation',
+  templateUrl: './documentation.component.html',
+  styleUrls: ['./documentation.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NgdDocumentationComponent implements OnDestroy {
   menuItems: NbMenuItem[] = [];
@@ -34,8 +35,8 @@ export class NgdDocumentationComponent implements OnDestroy {
     private themeService: NbThemeService,
     private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
-    private paginationService: NgdPaginationService) {
-
+    private paginationService: NgdPaginationService,
+  ) {
     this.themeService.changeTheme('docs-page');
     this.paginationService.setPaginationItems('/docs');
     this.menuItems = this.service.getPreparedMenu('/docs');

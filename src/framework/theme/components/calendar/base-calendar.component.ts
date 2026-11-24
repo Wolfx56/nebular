@@ -4,7 +4,16 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, EventEmitter, HostBinding, Input, OnInit, Output, Type } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnInit,
+  Output,
+  Type,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import { NbCalendarYearModelService } from '../calendar-kit/services/calendar-year-model.service';
 import {
@@ -23,12 +32,12 @@ import { convertToBoolProperty, NbBooleanInput } from '../helpers';
  * between pickers.
  * */
 @Component({
-    selector: 'nb-base-calendar',
-    templateUrl: './base-calendar.component.html',
-    standalone: false
+  selector: 'nb-base-calendar',
+  templateUrl: './base-calendar.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbBaseCalendarComponent<D, T> implements OnInit {
-
   /**
    * Defines if we should render previous and next months
    * in the current month view.
@@ -123,10 +132,7 @@ export class NbBaseCalendarComponent<D, T> implements OnInit {
    * */
   @Output() dateChange: EventEmitter<T> = new EventEmitter();
 
-  constructor(
-    protected dateService: NbDateService<D>,
-    protected yearModelService: NbCalendarYearModelService<D>,
-  ) {}
+  constructor(protected dateService: NbDateService<D>, protected yearModelService: NbCalendarYearModelService<D>) {}
 
   ngOnInit() {
     if (!this.visibleDate) {

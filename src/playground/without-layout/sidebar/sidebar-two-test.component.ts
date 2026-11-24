@@ -4,35 +4,29 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'nb-sidebar-two-test',
-    styles: [
-        `
-    :host ::ng-deep nb-layout-column {
-      background-color: #76ecff;
-    }
+  selector: 'nb-sidebar-two-test',
+  styles: [
+    `
+      :host ::ng-deep nb-layout-column {
+        background-color: #76ecff;
+      }
     `,
-    ],
-    template: `
+  ],
+  template: `
     <nb-layout>
-
       <nb-layout-header></nb-layout-header>
 
-      <nb-sidebar>
-        Left
-      </nb-sidebar>
+      <nb-sidebar> Left </nb-sidebar>
 
-      <nb-sidebar right fixed>
-        Right
-      </nb-sidebar>
+      <nb-sidebar right fixed> Right </nb-sidebar>
 
       <nb-layout-footer></nb-layout-footer>
-
     </nb-layout>
-`,
-    standalone: false
+  `,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
-export class SidebarTwoTestComponent {
-}
+export class SidebarTwoTestComponent {}

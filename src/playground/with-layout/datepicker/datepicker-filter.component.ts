@@ -4,20 +4,21 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'nb-datepicker-filter',
-    template: `
+  selector: 'nb-datepicker-filter',
+  template: `
     <nb-card size="large">
       <nb-card-body>
-        <input nbInput placeholder="Pick Date" [nbDatepicker]="dateTimePicker">
+        <input nbInput placeholder="Pick Date" [nbDatepicker]="dateTimePicker" />
         <nb-datepicker #dateTimePicker [filter]="filterFn"></nb-datepicker>
       </nb-card-body>
     </nb-card>
   `,
-    styleUrls: ['./datepicker-example.scss'],
-    standalone: false
+  styleUrls: ['./datepicker-example.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DatepickerFilterComponent {
   filterFn = (date) => date.getDay() === 0;

@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'ngd-components-promo',
-    template: `
+  selector: 'ngd-components-promo',
+  template: `
     <h2>{{ title }}</h2>
     <p>{{ description }}</p>
   `,
-    styleUrls: ['./components-promo.component.scss'],
-    standalone: false
+  styleUrls: ['./components-promo.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NgdComponentsPromoComponent {
   title = 'Angular UI components';

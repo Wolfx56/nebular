@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { ShowcaseDialogComponent } from './components/showcase-dialog.component';
 
 @Component({
-    selector: 'nb-dialog-showcase',
-    template: '<button nbButton (click)="open()">Open Dialog</button>',
-    styleUrls: ['./dialog-common.scss'],
-    standalone: false
+  selector: 'nb-dialog-showcase',
+  template: '<button nbButton (click)="open()">Open Dialog</button>',
+  styleUrls: ['./dialog-common.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DialogShowcaseComponent {
-  constructor(private dialogService: NbDialogService) {
-  }
+  constructor(private dialogService: NbDialogService) {}
 
   open() {
     this.dialogService.open(ShowcaseDialogComponent, {

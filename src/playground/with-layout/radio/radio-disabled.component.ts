@@ -4,12 +4,13 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'nb-radio-disabled',
-    templateUrl: './radio-disabled.component.html',
-    standalone: false
+  selector: 'nb-radio-disabled',
+  templateUrl: './radio-disabled.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RadioDisabledComponent {
   options = [

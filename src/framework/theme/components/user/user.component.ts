@@ -4,7 +4,7 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Input, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 import { convertToBoolProperty, NbBooleanInput } from '../helpers';
@@ -108,13 +108,13 @@ import { NbBadgePosition } from '../badge/badge.component';
  * user-giant-title-text-line-height:
  */
 @Component({
-    selector: 'nb-user',
-    styleUrls: ['./user.component.scss'],
-    templateUrl: './user.component.html',
-    standalone: false
+  selector: 'nb-user',
+  styleUrls: ['./user.component.scss'],
+  templateUrl: './user.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NbUserComponent {
-
   imageBackgroundStyle: SafeStyle;
 
   /**
@@ -273,13 +273,17 @@ export class NbUserComponent {
     return this.shape === 'round';
   }
 
-  constructor(private domSanitizer: DomSanitizer) { }
+  constructor(private domSanitizer: DomSanitizer) {}
 
   getInitials(): string {
     if (this.name) {
       const names = this.name.split(' ');
 
-      return names.map(n => n.charAt(0)).splice(0, 2).join('').toUpperCase();
+      return names
+        .map((n) => n.charAt(0))
+        .splice(0, 2)
+        .join('')
+        .toUpperCase();
     }
 
     return '';

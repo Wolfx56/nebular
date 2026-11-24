@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'ngd-eva',
-    styleUrls: ['./eva.components.scss'],
-    templateUrl: './eva.component.html',
-    standalone: false
+  selector: 'ngd-eva',
+  styleUrls: ['./eva.components.scss'],
+  templateUrl: './eva.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NgdEvaComponent {}

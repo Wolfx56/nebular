@@ -4,11 +4,11 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'nb-toggle-disabled',
-    template: `
+  selector: 'nb-toggle-disabled',
+  template: `
     <nb-card>
       <nb-card-body class="example-items-col">
         <nb-toggle disabled></nb-toggle>
@@ -16,7 +16,7 @@ import { Component } from '@angular/core';
       </nb-card-body>
     </nb-card>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
-export class ToggleDisabledComponent {
-}
+export class ToggleDisabledComponent {}

@@ -4,17 +4,18 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    template: `
+  template: `
     <nb-card>
       <nb-card-body class="example-items-rows">
-        <input type="text" nbInput placeholder="Text field">
-        <input type="text" nbInput placeholder="Disabled Text field" disabled>
+        <input type="text" nbInput placeholder="Text field" />
+        <input type="text" nbInput placeholder="Disabled Text field" disabled />
       </nb-card-body>
     </nb-card>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class InputsShowcaseComponent {}

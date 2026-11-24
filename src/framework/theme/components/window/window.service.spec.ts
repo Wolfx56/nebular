@@ -1,5 +1,5 @@
 import createSpy = jasmine.createSpy;
-import { Component, ElementRef, NgModule, ViewChild, TemplateRef } from '@angular/core';
+import { Component, ElementRef, NgModule, ViewChild, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed, fakeAsync, flush } from '@angular/core/testing';
 import {
   NbWindowService,
@@ -14,20 +14,22 @@ import {
 
 const WINDOW_CONTENT = 'window content';
 @Component({
-    selector: 'nb-test-window',
-    template: WINDOW_CONTENT,
-    standalone: false
+  selector: 'nb-test-window',
+  template: WINDOW_CONTENT,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 class NbTestWindowComponent {}
 
 @Component({
-    selector: 'nb-test-window-with-template',
-    template: `
+  selector: 'nb-test-window-with-template',
+  template: `
     <ng-template #contentTemplate let-data>
       <p>Static text: {{ data.text }}</p>
     </ng-template>
   `,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 class NbTestWindowWithTemplateComponent {
   @ViewChild('contentTemplate') contentTemplate: TemplateRef<any>;
@@ -43,10 +45,11 @@ class NbTestWindowWithTemplateComponent {
 }
 
 @Component({
-    selector: 'nb-test-window-with-component',
-    template: `<p id="window-content">window content {{ componentInput }}</p>
+  selector: 'nb-test-window-with-component',
+  template: `<p id="window-content">window content {{ componentInput }}</p>
     <p></p>`,
-    standalone: false
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TestWindowComponent {}
 
