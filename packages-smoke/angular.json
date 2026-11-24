@@ -42,6 +42,11 @@
             "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
+            },
+            "security": {
+              "allowedHosts": [
+                "localhost"
+              ]
             }
           },
           "configurations": {
@@ -117,57 +122,6 @@
               "src/**/*.ts",
               "src/**/*.html"
             ]
-          }
-        },
-        "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
-          "configurations": {
-            "development": {
-              "browserTarget": "packages-smoke:build:development",
-              "serverTarget": "packages-smoke:server:development"
-            },
-            "production": {
-              "browserTarget": "packages-smoke:build:production",
-              "serverTarget": "packages-smoke:server:production"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "prerender": {
-          "builder": "@nguniversal/builders:prerender",
-          "options": {
-            "routes": [
-              "/"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "packages-smoke:build:production",
-              "serverTarget": "packages-smoke:server:production"
-            },
-            "development": {
-              "browserTarget": "packages-smoke:build:development",
-              "serverTarget": "packages-smoke:server:development"
-            }
-          },
-          "defaultConfiguration": "production"
-        }
-      }
-    },
-    "packages-smoke-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "packages-smoke:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "packages-smoke:serve:production"
-            }
           }
         }
       }
